@@ -6,7 +6,8 @@ app.use(express.json());
 app.use(cors());
 
 app.locals.notes = [
-  { id: 12345, name: 'worf', type: 'cat' }
+  { id: 12345, name: 'worf', type: 'cat' },
+  { id: 23456, name: 'Jake', type: 'coolerCat' },
 ]
 
 app.get('/api/v1/notes', (request, response) => {
