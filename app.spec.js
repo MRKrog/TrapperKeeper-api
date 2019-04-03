@@ -63,7 +63,7 @@ describe('/api/v1', () => {
       expect(response.body).toEqual(expected)
     })
 
-    it.skip('should return a 404 status if no note with that id', async () => {
+    it('should return a 404 status if no note with that id', async () => {
       const response = await request(app).get('/api/v1/notes/2234324')
 
       expect(response.status).toEqual(404)
