@@ -21,20 +21,6 @@ describe('/api/v1', () => {
     });
   });
   
-  describe('/api/v1/notes/:id', () => {
-    it('should return a 200 status code when we grab by id', async () => {
-      const response = await request(app).get('/api/v1/notes/12345');
-      expect(response.status).toBe(200);
-      expect(response.body).toEqual(notes[0]);
-    });
-    
-    it('should return a 404 status code when id doesnt exist', async () => {
-      const response = await request(app).get('/api/v1/notes/9999');
-      expect(response.status).toBe(404);
-      expect(response.body).toEqual({});
-    });
-  });
-  
   describe('post/notes', () => {
     it('should return a 201 status code and push a new note', async() => {
       expect(app.locals.notes.length).toBe(2);
