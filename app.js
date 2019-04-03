@@ -74,7 +74,7 @@ const send404 = (response, message) => {
 
 app.get('/api/v1/notes/:id', (request, response) => {
  const noteById = app.locals.notes.find(note => request.params.id == note.id)
- if(!noteById) return send404("Note not found")
+ if(!noteById) return send404(response, "Note not found")
  response.status(200).json(noteById)
 })
 
