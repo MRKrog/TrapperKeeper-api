@@ -78,4 +78,11 @@ app.get('/api/v1/notes/:id', (request, response) => {
  response.status(200).json(noteById)
 })
 
-export default app
+app.delete('/api/v1/notes/:id', (request, response) => {
+  const noteIndex = app.locals.notes.findIndex(note => note.id == request.params.id);
+  if (noteIndex === -1) return response.status(404).json('Note not found');
+  app.locals.notes.splice(noteIndex, 1);
+  return response.status(200).json('Note was successfully deleted');
+})
+
+export default app;

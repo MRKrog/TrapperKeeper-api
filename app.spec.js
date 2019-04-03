@@ -70,4 +70,22 @@ describe('/api/v1', () => {
       expect(response.body).toEqual("Note not found")
     })
   })
+
+  describe('delete /notes/:id', () => {
+    it('should return a status of 200 and change the length of the array', async () => {
+      expect(app.locals.notes.length).toBe(2)
+      const response = await request(app).delete('/api/v1/notes/12345');
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual('Note was successfully deleted');
+      expect(app.locals.notes.length).toBe(1);
+    })
+
+    it('should return a status of 404 and NOT change the length of the array', async () => {
+      expect(app.locals.notes.length).toBe(2);
+      const response = await request(app).delete('/api/v1/notes/dogs');
+      expect(response.status).toBe(404);
+      expect(response.body).toEqual('Note not found');
+      expect(app.locals.notes.length).toBe(2);
+    });
+  });
 });
