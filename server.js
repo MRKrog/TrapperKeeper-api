@@ -64,21 +64,6 @@ app.put('/api/v1/notes/:id', (request, response) => {
 });
 
 
-app.delete('/api/v1/notes/:id', (request, response) => {
-  const { id } = request.params;
-  const { notes } = app.locals;
-
-  notes.map((note, index) => {
-    if (note.id == id) {
-       notes.splice(index, 1);
-       return send200(resonse, 'Note deleted successfuly')
-    }
-  });
-
-  return send404(response, 'Note not found')
-});
-
-
 
 const send200 = (response, message) => {
   response.status(200).json(message)
