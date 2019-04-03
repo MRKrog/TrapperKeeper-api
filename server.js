@@ -79,6 +79,7 @@ app.delete('/api/v1/notes/:id', (request, response) => {
 });
 
 
+
 const send200 = (response, message) => {
   response.status(200).json(message)
 }
@@ -94,3 +95,10 @@ const send422 = (response, message) => {
 const send404 = (response, message) => {
   response.status(404).json(message)
 }
+
+app.get('/api/v1/notes/:id', (request, response) => {
+  const noteById = app.locals.notes.find(note => request.params.id == note.id)
+  if(!noteById) return response.sendStatus(404)
+  response.status(200).json(noteById)
+})
+
