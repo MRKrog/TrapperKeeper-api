@@ -49,13 +49,27 @@ describe('/api/v1', () => {
       .send(noteInfo);
 
       expect(response.status).toBe(422);
-      expect(response.body).toEqual({
-       "message": "type is required",
-       "success": "false",
-      });
+      expect(response.body).toEqual("Type is required");
       expect(app.locals.notes.length).toBe(2);
     });
   });
+
+  describe('get /notes/:id', () => {
+    it('should return a 200 status and note body when note id exists', async () => {
+      const response = await request(app).get('/api/v1/notes/12345')
+      const expected = { id: 12345, name: 'worf', type: 'cat' }
+
+      expect(response.status).toEqual(200)
+      expect(response.body).toEqual(expected)
+    })
+
+    it.skip('should return a 404 status if no note with that id', async () => {
+      const response = await request(app).get('/api/v1/notes/2234324')
+
+      expect(response.status).toEqual(404)
+      expect(response.body).toEqual("Note not found")
+    })
+  })
 
   describe('delete /notes/:id', () => {
     it('should return a status of 200 and change the length of the array', async () => {
@@ -72,6 +86,6 @@ describe('/api/v1', () => {
       expect(response.status).toBe(404);
       expect(response.body).toEqual('Note not found');
       expect(app.locals.notes.length).toBe(2);
-    })
-  })
+    });
+  });
 });
