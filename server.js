@@ -43,3 +43,9 @@ app.post('/api/v1/notes', (request, response) => {
     return response.status(201).json(note);
   }
 });
+
+app.get('/api/v1/notes/:id', (request, response) => {
+  const noteById = app.locals.notes.find(note => request.params.id == note.id)
+  if(!noteById) return response.sendStatus(404)
+  response.status(200).json(noteById)
+})
