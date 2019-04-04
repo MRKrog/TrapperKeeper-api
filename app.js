@@ -6,83 +6,87 @@ app.use(express.json());
 app.use(cors());
 
 app.locals.notes = [
-  { id: 12345, name: 'worf', type: 'cat' }
-]
+  { id: shortid.generate(),
+    title: 'Worf ToDo',
+    list: [
+      { id: shortid.generate(), 
+        text: 'Eat food', 
+        isComplete: false 
+      },
+    ]
+  },
+  { id: shortid.generate(),
+    title: 'Jake ToDo',
+    list: [
+      { id: shortid.generate(), 
+        text: 'Do basic styling', 
+        isComplete: false 
+      },
+    ]
+  },
+];
+
+const sendStatus = (response, code, message) => {
+ response.status(code).json(message)
+}
 
 app.get('/api/v1/notes', (request, response) => {
- response.status(200).json(app.locals.notes);
+ sendStatus(response, 200, app.locals.notes);
 });
 
 app.post('/api/v1/notes', (request, response) => {
- const { notes } = app.locals;
- const { name, type } = request.body;
+  const { notes } = app.locals;
+  const { title } = request.body;
 
- if(!name && !type) return send422(response, 'Name and Type is required')
- if(!name) return send422(response, 'Name is required')
- if(!type) return send422(response, 'Type is required')
+  if (!title) return sendStatus(response, 422, 'Title is required');
 
- const note = { id: shortid.generate(), name, type }
-
- notes.push(note);
- return response.status(201).json(note);
-});
+  const note = { 
+    id: shortid.generate(), 
+    title, 
+    list: [] 
+  }
+  notes.push(note);
+  return response.status(201).json(note);
+  });
 
 app.put('/api/v1/notes/:id', (request, response) => {
- const { name, type } = request.body;
- const { id } = request.params;
- const { notes } = app.locals;
+  const { title } = request.body;
+  const { id } = request.params;
+  const { notes } = app.locals;
 
- let noteFound;
- let noteIndex;
+  let noteFound;
+  let noteIndex;
 
- notes.map((note, index) => {
-  if (note.id == id) {
-   noteFound = note;
-   noteIndex = index;
-  }
- });
+  notes.map((note, index) => {
+    if (note.id == id) {
+      noteFound = note;
+      noteIndex = index;
+    }
+  });
 
- if(!noteFound) return send400(response, 'Note is not found')
- if(!name) return send400(response, 'Name is required')
- if(!type) return send400(response, 'Type is required')
+  if(!noteFound) return sendStatus(response, 400, 'Note was not found');
+  if(!title) return sendStatus(response, 400, 'Title is required');
 
- const updatedNote = {
-  id: noteFound.id,
-  name: request.body.name || noteFound.name,
-  type: request.body.type || noteFound.type,
- };
+  const updatedNote = {
+    id: noteFound.id,
+    title: request.body.title || noteFound.title,
+  };
 
- notes.splice(noteIndex, 1, updatedNote);
- return send200(response, 'Note added successfully')
+  notes.splice(noteIndex, 1, updatedNote);
+  return sendStatus(response, 200, 'Note added successfully');
 });
 
-const send200 = (response, message) => {
- response.status(200).json(message)
-}
-
-const send201 = (response, message) => {
- response.status(201).json(message)
-}
-
-const send422 = (response, message) => {
- response.status(422).json(message)
-}
-
-const send404 = (response, message) => {
- response.status(404).json(message)
-}
-
 app.get('/api/v1/notes/:id', (request, response) => {
- const noteById = app.locals.notes.find(note => request.params.id == note.id)
- if(!noteById) return send404("Note not found")
- response.status(200).json(noteById)
+ const noteById = app.locals.notes.find(note => request.params.id == note.id);
+ if(!noteById) return sendStatus(response, 404, 'Note was not found');
+ sendStatus(response, 200, noteById);
 })
 
 app.delete('/api/v1/notes/:id', (request, response) => {
   const noteIndex = app.locals.notes.findIndex(note => note.id == request.params.id);
   if (noteIndex === -1) return response.status(404).json('Note not found');
   app.locals.notes.splice(noteIndex, 1);
-  return response.status(200).json('Note was successfully deleted');
+  return sendStatus(response, 200, 'Note was successfully deleted');
 })
 
 export default app;
