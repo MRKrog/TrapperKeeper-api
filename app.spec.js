@@ -74,7 +74,7 @@ describe('app', () => {
   });
 
   describe('put "/api/v1/notes:id"', () => {
-    it('should return a satus code 200 and rewrite the target object', async() => {
+    it('should return a status code 200 and rewrite the target object', async() => {
       const response = await request(app).put('/api/v1/notes/1')
       .send(
         { id: 1,

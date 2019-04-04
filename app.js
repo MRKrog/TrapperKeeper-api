@@ -36,14 +36,14 @@ app.get('/api/v1/notes', (request, response) => {
 
 app.post('/api/v1/notes', (request, response) => {
   const { notes } = app.locals;
-  const { title } = request.body;
+  const { title, list } = request.body;
 
   if (!title) return sendMessage(response, 422, 'Title is required');
 
   const note = {
     id: shortid.generate(),
     title,
-    list: []
+    list
   }
   notes.push(note);
   return response.status(201).json(note);
