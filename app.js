@@ -9,84 +9,82 @@ app.locals.notes = [
   { id: shortid.generate(),
     title: 'Worf ToDo',
     list: [
-      { id: shortid.generate(), 
-        text: 'Eat food', 
-        isComplete: false 
+      { id: shortid.generate(),
+        text: 'Eat food',
+        isComplete: false
       },
     ]
   },
   { id: shortid.generate(),
     title: 'Jake ToDo',
     list: [
-      { id: shortid.generate(), 
-        text: 'Do basic styling', 
-        isComplete: false 
+      { id: shortid.generate(),
+        text: 'Do basic styling',
+        isComplete: false
       },
     ]
   },
 ];
 
-const sendStatus = (response, code, message) => {
- response.status(code).json(message)
+const sendMessage = (response, code, message) => {
+ return response.status(code).json(message)
 }
 
 app.get('/api/v1/notes', (request, response) => {
- sendStatus(response, 200, app.locals.notes);
+ sendMessage(response, 200, app.locals.notes);
 });
 
 app.post('/api/v1/notes', (request, response) => {
   const { notes } = app.locals;
   const { title } = request.body;
 
-  if (!title) return sendStatus(response, 422, 'Title is required');
+  if (!title) return sendMessage(response, 422, 'Title is required');
 
-  const note = { 
-    id: shortid.generate(), 
-    title, 
-    list: [] 
+  const note = {
+    id: shortid.generate(),
+    title,
+    list: []
   }
   notes.push(note);
   return response.status(201).json(note);
   });
 
 app.put('/api/v1/notes/:id', (request, response) => {
-  const { title } = request.body;
+  const { title, list } = request.body;
   const { id } = request.params;
   const { notes } = app.locals;
 
-  let noteFound;
-  let noteIndex;
-
-  notes.map((note, index) => {
+  let found = false;
+  const newNotes = notes.map(note => {
     if (note.id == id) {
-      noteFound = note;
-      noteIndex = index;
+      found = true;
+      return {
+        id,
+        title: title || note.title,
+        list: list || note.list,
+      }
+    } else {
+      return note
     }
   });
+  if(!found) return sendMessage(response, 404, 'Note was not found');
+  if(!title) return sendMessage(response, 400, 'Title is required');
+  app.locals.notes = newNotes;
 
-  if(!noteFound) return sendStatus(response, 404, 'Note was not found');
-  if(!title) return sendStatus(response, 400, 'Title is required');
-
-  const updatedNote = {
-    id: noteFound.id,
-    title: request.body.title || noteFound.title,
-  };
-
-  notes.splice(noteIndex, 1, updatedNote);
-  return sendStatus(response, 200, 'Note updated successfully');
+  return sendMessage(response, 200, 'Note updated successfully');
 });
 
 app.get('/api/v1/notes/:id', (request, response) => {
  const noteById = app.locals.notes.find(note => request.params.id == note.id);
- if(!noteById) return sendStatus(response, 404, 'Note was not found');
- sendStatus(response, 200, noteById);
+ if(!noteById) return sendMessage(response, 404, 'Note was not found');
+ sendMessage(response, 200, noteById);
 })
 
 app.delete('/api/v1/notes/:id', (request, response) => {
   const noteIndex = app.locals.notes.findIndex(note => note.id == request.params.id);
   if (noteIndex === -1) return response.status(404).json('Note not found');
   app.locals.notes.splice(noteIndex, 1);
-  return sendStatus(response, 200, 'Note was successfully deleted');
+  return sendMessage(response, 200, 'Note was successfully deleted');
 })
 
 export default app;
