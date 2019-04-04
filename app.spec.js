@@ -74,7 +74,21 @@ describe('app', () => {
   });
 
   describe('put "/api/v1/notes:id"', () => {
-    // test put happy and sad paths
+    it('should return a satus code 200 and rewrite the target object', async() => {
+      const response = await request(app).put('/api/v1/notes/1')
+      .send(
+        { id: 1,
+        title: 'hello',
+        list: [
+          { id: 'a', 
+            text: 'Eat food', 
+            isComplete: false 
+           },
+         ]
+      })
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual('Note updated successfully')
+    });
   });
 
   describe('get "/api/v1/notes/:id"', () => {
@@ -90,7 +104,7 @@ describe('app', () => {
       const response = await request(app).get('/api/v1/notes/2234324')
 
       expect(response.status).toEqual(404)
-      expect(response.body).toEqual("Note not found")
+      expect(response.body).toEqual('Note was not found')
     });
 
   });

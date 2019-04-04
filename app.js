@@ -64,7 +64,7 @@ app.put('/api/v1/notes/:id', (request, response) => {
     }
   });
 
-  if(!noteFound) return sendStatus(response, 400, 'Note was not found');
+  if(!noteFound) return sendStatus(response, 404, 'Note was not found');
   if(!title) return sendStatus(response, 400, 'Title is required');
 
   const updatedNote = {
@@ -73,7 +73,7 @@ app.put('/api/v1/notes/:id', (request, response) => {
   };
 
   notes.splice(noteIndex, 1, updatedNote);
-  return sendStatus(response, 200, 'Note added successfully');
+  return sendStatus(response, 200, 'Note updated successfully');
 });
 
 app.get('/api/v1/notes/:id', (request, response) => {
