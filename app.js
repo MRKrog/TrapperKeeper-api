@@ -7,19 +7,43 @@ app.use(cors());
 
 app.locals.notes = [
   { id: shortid.generate(),
-    title: 'Worf ToDo',
+    title: 'Evaluation To-Do',
     list: [
       { id: shortid.generate(),
-        text: 'Eat food',
+        text: 'Weep with joy at our success',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Applaud and bow',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Give us perfect scores on everything',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: '',
         isComplete: false
       },
     ]
   },
   { id: shortid.generate(),
-    title: 'Jake ToDo',
+    title: 'Team To-Do',
     list: [
       { id: shortid.generate(),
-        text: 'Do basic styling',
+        text: 'Show project at demo night',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Get jobs',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Keep nailing it',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: '',
         isComplete: false
       },
     ]
