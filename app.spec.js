@@ -11,19 +11,21 @@ describe('app', () => {
     notes = [
       { id: 1,
         title: 'Worf ToDo',
+        background: '#ffe680',
         list: [
-          { id: 'a', 
-            text: 'Eat food', 
-            isComplete: false 
+          { id: 'a',
+            text: 'Eat food',
+            isComplete: false
           },
         ]
       },
       { id: 2,
         title: 'Jake ToDo',
+        background: '#ffe680',
         list: [
-          { id: 'b', 
-            text: 'Do basic styling', 
-            isComplete: false 
+          { id: 'b',
+            text: 'Do basic styling',
+            isComplete: false
           },
         ]
       },
@@ -80,9 +82,9 @@ describe('app', () => {
         { id: 1,
         title: 'hello',
         list: [
-          { id: 'a', 
-            text: 'Eat food', 
-            isComplete: false 
+          { id: 'a',
+            text: 'Eat food',
+            isComplete: false
            },
          ]
       })
