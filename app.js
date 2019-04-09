@@ -40,6 +40,199 @@ app.locals.notes = [
       },
       { id: shortid.generate(),
         text: 'Keep nailing it',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: '',
+        isComplete: false
+      },
+    ]
+  },
+  { id: shortid.generate(),
+    title: 'Jessica Shopping List',
+    list: [
+      { id: shortid.generate(),
+        text: 'Apples',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Carrots',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Bread',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Milk',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Beer',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Vanilla',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Oats',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Pom Seeds',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: '',
+        isComplete: false
+      },
+    ]
+  },
+  { id: shortid.generate(),
+    title: 'Supplies for Birthday Party',
+    list: [
+      { id: shortid.generate(),
+        text: 'Balloons',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Cake',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Party Hats',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Pinata',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Streamers',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Chairs',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Cups',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Tables',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Unicorn Candles',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: '',
+        isComplete: false
+      },
+    ]
+  },
+  { id: shortid.generate(),
+    title: 'How to Make Toast',
+    list: [
+      { id: shortid.generate(),
+        text: 'Get a job so you can buy a toaster',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Buy a toaster',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Buy bread',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Put bread in toaster for 2 mins',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Remove bread from toaster when golden brown',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Spread small pad of butter on toast',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Enjoy!',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: '',
+        isComplete: false
+      },
+    ]
+  },
+  { id: shortid.generate(),
+    title: 'Archie ToDo Daily',
+    list: [
+      { id: shortid.generate(),
+        text: 'Eat Breakfast',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Play with Finn',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Poop',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Pee',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Chew on bone',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Eat Dinner',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: '',
+        isComplete: false
+      },
+    ]
+  },
+  { id: shortid.generate(),
+    title: 'Job Prep',
+    list: [
+      { id: shortid.generate(),
+        text: 'Start Resume',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Send resume to Brenna for review',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Update LinkedIn',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Go on Job Shadow',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Warm Outreach',
+        isComplete: true
+      },
+      { id: shortid.generate(),
+        text: 'Beer date with Gabi',
+        isComplete: false
+      },
+      { id: shortid.generate(),
+        text: 'Apply for jobs',
         isComplete: false
       },
       { id: shortid.generate(),
