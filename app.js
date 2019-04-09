@@ -8,6 +8,7 @@ app.use(cors());
 app.locals.notes = [
   { id: shortid.generate(),
     title: 'Evaluation To-Do',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Weep with joy at our success',
@@ -29,6 +30,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Team To-Do',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Show project at demo night',
@@ -60,12 +62,13 @@ app.get('/api/v1/notes', (request, response) => {
 
 app.post('/api/v1/notes', (request, response) => {
   const { notes } = app.locals;
-  const { title, list } = request.body;
+  const { title, list, background } = request.body;
 
   if (!title) return sendMessage(response, 422, 'Title is required');
 
   const note = {
     id: shortid.generate(),
+    background,
     title,
     list
   }
@@ -74,7 +77,7 @@ app.post('/api/v1/notes', (request, response) => {
   });
 
 app.put('/api/v1/notes/:id', (request, response) => {
-  const { title, list } = request.body;
+  const { title, list, background } = request.body;
   const { id } = request.params;
   const { notes } = app.locals;
 
@@ -84,6 +87,7 @@ app.put('/api/v1/notes/:id', (request, response) => {
       found = true;
       return {
         id,
+        background: background || note.background,
         title: title || note.title,
         list: list || note.list,
       }
