@@ -52,6 +52,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Jessica Shopping List',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Apples',
@@ -93,6 +94,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Supplies for Birthday Party',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Balloons',
@@ -138,6 +140,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'How to Make Toast',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Get a job so you can buy a toaster',
@@ -175,6 +178,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Archie ToDo Daily',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Eat Breakfast',
@@ -208,6 +212,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Job Prep',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Start Resume',
