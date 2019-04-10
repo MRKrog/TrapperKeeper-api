@@ -8,7 +8,7 @@ app.use(cors());
 app.locals.notes = [
   { id: shortid.generate(),
     title: 'Evaluation To-Do',
-    background: '#d6ffb78',
+    background: '#ffe680',
     list: [
       { id: shortid.generate(),
         text: 'Weep with joy at our success',
