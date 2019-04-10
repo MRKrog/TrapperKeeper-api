@@ -8,7 +8,7 @@ app.use(cors());
 app.locals.notes = [
   { id: shortid.generate(),
     title: 'Evaluation To-Do',
-    background: '#ffe680',
+    background: '#d6ffb78',
     list: [
       { id: shortid.generate(),
         text: 'Weep with joy at our success',
@@ -51,8 +51,8 @@ app.locals.notes = [
     ]
   },
   { id: shortid.generate(),
-    title: 'Jessica Shopping List',
-    background: '#ffe680',
+    title: 'Shopping List',
+    background: '#eef5db',
     list: [
       { id: shortid.generate(),
         text: 'Apples',
@@ -94,7 +94,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Supplies for Birthday Party',
-    background: '#ffe680',
+    background: '#d6ffb7',
     list: [
       { id: shortid.generate(),
         text: 'Balloons',
@@ -140,7 +140,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'How to Make Toast',
-    background: '#ffe680',
+    background: '#eef5db',
     list: [
       { id: shortid.generate(),
         text: 'Get a job so you can buy a toaster',
@@ -178,7 +178,7 @@ app.locals.notes = [
   },
   { id: shortid.generate(),
     title: 'Archie ToDo Daily',
-    background: '#ffe680',
+    background: '#d6ffb7',
     list: [
       { id: shortid.generate(),
         text: 'Eat Breakfast',
